@@ -2,11 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\SuperHeroRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\SuperheroRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass=SuperHeroRepository::class)
+ * @ORM\Entity(repositoryClass=SuperheroRepository::class)
+ * @ApiResource(
+ *     order={"name"="ASC"}
+ * )
  */
 class Superhero
 {
@@ -14,16 +19,19 @@ class Superhero
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"superhero:list", "superhero:item"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"superhero:list", "superhero:item"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Groups({"superhero:list", "superhero:item"})
      */
     private $birth;
 

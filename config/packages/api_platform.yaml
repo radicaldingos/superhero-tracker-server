@@ -1,0 +1,9 @@
+api_platform:
+    title: 'Superheroes REST API'
+    description: 'Une API qui envoie du lourd'
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
