@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiController extends AbstractController
 {
     /**
-     * @var integer HTTP status code - 200 (OK) by default
+     * @var integer
      */
     protected $statusCode = 200;
 
@@ -25,27 +25,12 @@ class ApiController extends AbstractController
         return $this;
     }
 
-    /**
-     * Returns a JSON response
-     *
-     * @param array $data
-     * @param array $headers
-     *
-     * @return JsonResponse
-     */
-    public function respond($data, $headers = []): JsonResponse
+    public function respond(array $data, array $headers = []): JsonResponse
     {
         return new JsonResponse($data, $this->getStatusCode(), $headers);
     }
 
-    /**
-     * Sets an error message and returns a JSON response
-     *
-     * @param string $errors
-     *
-     * @return JsonResponse
-     */
-    public function respondWithErrors($errors, $headers = []): JsonResponse
+    public function respondWithErrors(string $errors, array $headers = []): JsonResponse
     {
         $data = [
             'errors' => $errors,
@@ -54,50 +39,22 @@ class ApiController extends AbstractController
         return new JsonResponse($data, $this->getStatusCode(), $headers);
     }
 
-    /**
-     * Returns a 401 Unauthorized http response
-     *
-     * @param string $message
-     *
-     * @return JsonResponse
-     */
-    public function respondUnauthorized($message = 'Not authorized!'): JsonResponse
+    public function respondUnauthorized(string $message = 'Not authorized!'): JsonResponse
     {
         return $this->setStatusCode(401)->respondWithErrors($message);
     }
 
-    /**
-     * Returns a 422 Unprocessable Entity
-     *
-     * @param string $message
-     *
-     * @return JsonResponse
-     */
-    public function respondValidationError($message = 'Validation errors'): JsonResponse
+    public function respondValidationError(string $message = 'Validation errors'): JsonResponse
     {
         return $this->setStatusCode(422)->respondWithErrors($message);
     }
 
-    /**
-     * Returns a 404 Not Found
-     *
-     * @param string $message
-     *
-     * @return JsonResponse
-     */
-    public function respondNotFound($message = 'Not found!'): JsonResponse
+    public function respondNotFound(string $message = 'Not found!'): JsonResponse
     {
         return $this->setStatusCode(404)->respondWithErrors($message);
     }
 
-    /**
-     * Returns a 201 Created
-     *
-     * @param array $data
-     *
-     * @return JsonResponse
-     */
-    public function respondCreated($data = []): JsonResponse
+    public function respondCreated(array $data = []): JsonResponse
     {
         return $this->setStatusCode(201)->respond($data);
     }

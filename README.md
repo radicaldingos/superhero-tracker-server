@@ -6,4 +6,4 @@ Le projet est scindé en 2 parties : client (frontend) et serveur (backend). Ce 
 
 Les technologies ciblées en backend :
 * Symfony 5
-* API PLatform
+* API Platform
